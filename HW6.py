@@ -4,8 +4,8 @@ import unittest
 import os
 
 ###########################################
-# Your name:                              #
-# Who you worked with:                    #
+# Your name: Angela Cheong                #
+# Who you worked with: Adena Cartsonis    #
 ###########################################
 
 def load_json(filename):
