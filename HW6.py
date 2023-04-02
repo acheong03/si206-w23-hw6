@@ -151,8 +151,21 @@ def calculate_bmi(filename):
     -------
     dict: dictionary with the name as a key and the BMI as the value
     '''
-
-    pass
+    cache = load_json(filename)
+    starship_dict = {}
+    
+    for page in cache.values():
+        for character in page:
+            name = character['name']
+            starships = character['starships']
+            if starships:
+                names = []
+                for url in starships:
+                    data = get_swapi_info(url)
+                    names.append(data['name'])
+                starship_dict[name] = names
+    return starship_dict
+    return dict
 
 class TestHomework6(unittest.TestCase):
     def setUp(self):
