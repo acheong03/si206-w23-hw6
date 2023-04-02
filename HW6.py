@@ -50,7 +50,8 @@ def write_json(filename, dict):
     None
         does not return anything
     '''  
-
+    with open(filename, "w") as f: #do I have to add the .json to the filename
+        json.dump(dict, f)
     pass
 
 def get_swapi_info(url, params=None):
@@ -69,8 +70,15 @@ def get_swapi_info(url, params=None):
     -------
     dict: dictionary representation of the decoded JSON.
     '''
-
-    pass
+    res = requests.get(url, params=params)
+    if res.ok:
+        #res.raise_for_status()
+        text = res.text
+        json_data = json.loads(text)
+        return json_data
+    else:
+        print('Exception')
+        return None
 
 def cache_all_pages(people_url, filename):
     '''
